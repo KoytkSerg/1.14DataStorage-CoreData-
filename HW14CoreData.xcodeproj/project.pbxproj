@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		455110B3264E5EB5001E7C8C /* CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455110B2264E5EB5001E7C8C /* CoreDataClass.swift */; };
 		458C91EA2642DC5C0067CB54 /* Task+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458C91E82642DC5C0067CB54 /* Task+CoreDataClass.swift */; };
 		458C91EB2642DC5C0067CB54 /* Task+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458C91E92642DC5C0067CB54 /* Task+CoreDataProperties.swift */; };
 		45B3710A263811E700B39BE6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B37109263811E700B39BE6 /* AppDelegate.swift */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		455110B2264E5EB5001E7C8C /* CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataClass.swift; sourceTree = "<group>"; };
 		458C91E82642DC5C0067CB54 /* Task+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Task+CoreDataClass.swift"; sourceTree = "<group>"; };
 		458C91E92642DC5C0067CB54 /* Task+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Task+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		45B37106263811E700B39BE6 /* HW14CoreData.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HW14CoreData.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -66,6 +68,7 @@
 		45B37108263811E700B39BE6 /* HW14CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				455110B2264E5EB5001E7C8C /* CoreDataClass.swift */,
 				45B37109263811E700B39BE6 /* AppDelegate.swift */,
 				45B3710B263811E700B39BE6 /* SceneDelegate.swift */,
 				45B3710D263811E700B39BE6 /* ViewController.swift */,
@@ -156,6 +159,7 @@
 				458C91EB2642DC5C0067CB54 /* Task+CoreDataProperties.swift in Sources */,
 				458C91EA2642DC5C0067CB54 /* Task+CoreDataClass.swift in Sources */,
 				45B3710C263811E700B39BE6 /* SceneDelegate.swift in Sources */,
+				455110B3264E5EB5001E7C8C /* CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

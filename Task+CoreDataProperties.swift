@@ -17,6 +17,7 @@ extension Task {
     }
 
     @NSManaged public var name: String?
+    @NSManaged public var isComplited: Bool
 
 }
 

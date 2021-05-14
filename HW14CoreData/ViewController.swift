@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import CoreData
 
 class ViewController: UIViewController {
     
@@ -17,11 +16,11 @@ class ViewController: UIViewController {
         alert.addTextField()
         let submitButton = UIAlertAction(title: "Add", style: .default) {(action) in
             let textfield = alert.textFields![0]
-            let newTask = Task(context: self.context)
+            let newTask = Task(context: self.coreData.context)
             newTask.name = textfield.text
-            
+            newTask.isComplited = false
             do{
-                try! self.context.save()
+                try! self.coreData.context.save()
             }
             self.fetchTasks()
         }
@@ -29,19 +28,24 @@ class ViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+//    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var tasks:[Task]?
-    
+    let coreData = CoreDataClass()
     func fetchTasks(){
         do {
-            self.tasks = try! context.fetch(Task.fetchRequest())
+            self.tasks = try! coreData.context.fetch(Task.fetchRequest())
             DispatchQueue.main.async{
                 self.Table.reloadData()
             }
         }
       
     }
-    
+    func saveCoredata(){
+        do{
+            try self.coreData.context.save()
+        }catch{}
+        self.fetchTasks()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,20 +65,39 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! TableViewCell
         let data = self.tasks![indexPath.row]
         cell.textLabel?.text = data.name
+        if data.isComplited == true{
+            cell.accessoryType = .checkmark
+        }else{
+            cell.accessoryType = .none
+        }
         return cell
     }
     
-    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let action = UIContextualAction(style: .destructive, title: "Delete") {
-            (action, view, completionHandler) in
-            let removeTask = self.tasks![indexPath.row]
-            self.context.delete(removeTask)
-            do{
-                try self.context.save()
-            }catch{}
-            self.fetchTasks()
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let data = self.tasks![indexPath.row]
+        var title = ""
+        var isComplited = false
+        let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
+            self.coreData.context.delete(data)
+            self.saveCoredata()
         }
-        return UISwipeActionsConfiguration(actions: [action])
+        
+        if data.isComplited != true {
+            title = "Done"
+            isComplited = true
+        }else{
+            title = "Not done"
+            isComplited = false
+        }
+        
+        let done = UITableViewRowAction(style: .normal, title: title) { (action, indexPath) in
+            data.isComplited = isComplited
+            self.saveCoredata()
+            self.Table.reloadData()
+        }
+
+        done.backgroundColor = UIColor.blue
+        return [delete, done]
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -88,7 +111,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
             let textfield = alert.textFields![0]
             task.name = textfield.text
             do{
-                try self.context.save()
+                try self.coreData.context.save()
             }catch{}
             self.fetchTasks()
             
@@ -96,4 +119,6 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
         alert.addAction(submitButton)
         self.present(alert, animated: true, completion: nil)
     }
+    
+   
 }
