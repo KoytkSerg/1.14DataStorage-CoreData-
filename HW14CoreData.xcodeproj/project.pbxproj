@@ -52,6 +52,7 @@
 			children = (
 				458C91E82642DC5C0067CB54 /* Task+CoreDataClass.swift */,
 				458C91E92642DC5C0067CB54 /* Task+CoreDataProperties.swift */,
+				455110B2264E5EB5001E7C8C /* CoreDataClass.swift */,
 				45B37108263811E700B39BE6 /* HW14CoreData */,
 				45B37107263811E700B39BE6 /* Products */,
 			);
@@ -68,7 +69,6 @@
 		45B37108263811E700B39BE6 /* HW14CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				455110B2264E5EB5001E7C8C /* CoreDataClass.swift */,
 				45B37109263811E700B39BE6 /* AppDelegate.swift */,
 				45B3710B263811E700B39BE6 /* SceneDelegate.swift */,
 				45B3710D263811E700B39BE6 /* ViewController.swift */,

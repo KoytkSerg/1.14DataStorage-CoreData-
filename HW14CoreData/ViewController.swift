@@ -28,7 +28,6 @@ class ViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
-//    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var tasks:[Task]?
     let coreData = CoreDataClass()
     func fetchTasks(){
@@ -38,8 +37,8 @@ class ViewController: UIViewController {
                 self.Table.reloadData()
             }
         }
-      
     }
+    
     func saveCoredata(){
         do{
             try self.coreData.context.save()
@@ -52,8 +51,6 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
         fetchTasks()
     }
-
-
 }
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource{
@@ -114,8 +111,8 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
                 try self.coreData.context.save()
             }catch{}
             self.fetchTasks()
-            
     }
+        
         alert.addAction(submitButton)
         self.present(alert, animated: true, completion: nil)
     }
